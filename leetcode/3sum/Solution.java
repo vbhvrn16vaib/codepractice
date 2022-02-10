@@ -14,9 +14,10 @@ class Solution {
                     List<Integer> d = Arrays.asList(nums[i],nums[j],0-sum);
                     Collections.sort(d);
                     ps.add(d);
-                }
-            }
+                }
+            }
         }
+        //nope th
         return new ArrayList<>(ps);
     }
 }
