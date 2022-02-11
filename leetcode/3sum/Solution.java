@@ -4,7 +4,7 @@ class Solution {
         for(int i =0; i < nums.length; i++){
             map.putIfAbsent(nums[i],new HashSet<>());
             map.get(nums[i]).add(i);
-        }
+        }
         Set<List<Integer>> ps = new HashSet<>();
         for(int i = 0; i < nums.length; i++){
             for(int j = i+1; j < nums.length; j++){
@@ -15,9 +15,8 @@ class Solution {
                     Collections.sort(d);
                     ps.add(d);
                 }
-            }
+            }
         }
-        //nope th
         return new ArrayList<>(ps);
     }
 }
