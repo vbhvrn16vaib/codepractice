@@ -1,23 +1,25 @@
 class Solution {
     public int findLength(int[] nums1, int[] nums2) {
-        int mlen = 0;
-       for(int i = 0; i < nums1.length; i++){
-           int k = i;
-           int tlen = 0;
-           for(int j = 0; j < nums2.length; j++){
-               if(k == nums1.length || nums2[j] != nums1[k]){
-                   k = i;
-                   tlen = 0;
-                   continue;
-               }
-               k+=1;
-               tlen+=1;
-               mlen = Math.max(tlen, mlen); 
-           }
-       }
-        return mlen;
-    }
-    public void print(String d){
-        System.out.println(d);
+        Map<Integer, List<Integer>> posMap = new HashMap<>();
+        for(int i = 0 ; i < nums2.length; i++){
+            posMap.putIfAbsent(nums2[i], new ArrayList<>());
+            posMap.get(nums2[i]).add(i);
+        }
+        int max = 0;
+        for(int i = 0; i < nums1.length; i++){
+            List<Integer> pos2 = posMap.getOrDefault(nums1[i], new ArrayList<>());
+            for(int p : pos2){
+                int j = i;
+                int k = p;
+                int cnt = 0;
+                while( j < nums1.length && k < nums2.length && nums1[j] == nums2[k]){
+                    j+=1;
+                    k+=1;
+                    cnt+=1;
+                }
+                max = Math.max(cnt, max);
+            }
+        }
+        return max;
     }
 }
